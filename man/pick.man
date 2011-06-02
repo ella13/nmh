@@ -46,6 +46,7 @@ pick \- search for messages by content
 .RB [ \-public " | " \-nopublic ]
 .RB [ \-zero " | " \-nozero ]
 .RB [ \-list " | " \-nolist ] 
+.RB [ \-quiet ]
 .RB [ \-version ]
 .RB [ \-help ]
 .PP
@@ -282,6 +283,11 @@ in the
 same way
 .B mark
 uses them.
+
+.PP
+The
+.B \-quiet 
+switch is used to silence warnings given when no messages match.
 
 .SH FILES
 .fc ^ ~
