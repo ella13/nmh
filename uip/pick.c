@@ -63,6 +63,8 @@ static struct swit switches[] = {
     { "version", 0 },
 #define	HELPSW                 23
     { "help", 0 },
+#define	QUIETSW                24
+    { "quiet", 0 },
     { NULL, 0 }
 };
 
@@ -74,6 +76,7 @@ int
 main (int argc, char **argv)
 {
     int publicsw = -1, zerosw = 1, seqp = 0, vecp = 0;
+    int quietsw = 0;
     int lo, hi, msgnum;
     char *maildir, *folder = NULL, buf[100];
     char *cp, **argp, **arguments;
@@ -178,6 +181,9 @@ main (int argc, char **argv)
 	    case NLISTSW: 
 		listsw = 0;
 		continue;
+	    case QUIETSW:
+		quietsw = 1;
+		continue;
 	    }
 	}
 	if (*cp == '+' || *cp == '@') {
@@ -271,7 +277,7 @@ main (int argc, char **argv)
     mp->lowsel = lo;
     mp->hghsel = hi;
 
-    if (mp->numsel <= 0)
+    if (mp->numsel <= 0 && !quietsw)
 	adios (NULL, "no messages match specification");
 
     seqs[seqp] = NULL;
