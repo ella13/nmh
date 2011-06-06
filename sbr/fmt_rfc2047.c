@@ -2,8 +2,6 @@
 /*
  * fmt_rfc2047.c -- decode RFC-2047 header format 
  *
- * $Id$
- *
  * This code is Copyright (c) 2002, by the authors of nmh.  See the
  * COPYRIGHT file in the root directory of the nmh distribution for
  * complete copyright information.
@@ -238,6 +236,7 @@ decode_rfc2047 (char *str, char *dst, size_t dstlen)
 	    } else {
 		/* base64 */
 		int c1, c2, c3, c4;
+		c1 = c2 = c3 = c4 = -1;
 
 		pp = startofmime;
 		while (pp < endofmime) {

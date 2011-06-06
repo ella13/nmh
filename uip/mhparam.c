@@ -5,8 +5,6 @@
  * Originally contributed by
  * Jeffrey C Honig <Jeffrey_C_Honig@cornell.edu>
  *
- * $Id$
- *
  * This code is Copyright (c) 2002, by the authors of nmh.  See the
  * COPYRIGHT file in the root directory of the nmh distribution for
  * complete copyright information.
@@ -150,7 +148,7 @@ main(int argc, char **argv)
 	for (np = m_defs; np; np = np->n_next)
 	    printf("%s: %s\n", np->n_name, np->n_field);
 
-    } if (debug) {
+    } else if (debug) {
 	struct proc *ps;
 
 	/*

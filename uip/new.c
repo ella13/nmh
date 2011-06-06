@@ -4,8 +4,6 @@
  *       -- as fnext,  move to next folder with unseen messages
  *       -- as fprev,  move to previous folder with unseen messages
  *       -- as unseen, scan all unseen messages
- * $Id$
- *
  * This code is Copyright (c) 2008, by the authors of nmh.  See the
  * COPYRIGHT file in the root directory of the nmh distribution for
  * complete copyright information.
@@ -220,6 +218,8 @@ crawl_callback(char *folder, void *baton)
  * `cur' points to the name of the current folder, `folders' points to the
  * name of a .folder (if NULL, crawl all folders), and `sequences' points to
  * the array of sequences for which to look.
+ *
+ * An empty list is returned as first=last=NULL.
  */
 static void
 check_folders(struct node **first, struct node **last,
@@ -231,7 +231,7 @@ check_folders(struct node **first, struct node **last,
     char *line;
     size_t len;
 
-    *first = *cur_node = NULL;
+    *first = *last = *cur_node = NULL;
     *maxlen = 0;
 
     b.first = first;
@@ -310,7 +310,10 @@ doit(char *cur, char *folders, char *sequences[])
 		  folders, sequences);
 
     if (run_mode == FNEXT || run_mode == FPREV) {
-	if (first->n_next == NULL) {
+	if (first == NULL) {
+	    /* No folders at all... */
+	    return NULL;
+	} else if (first->n_next == NULL) {
 	    /* We have only one node; any desired messages in it? */
 	    if (first->n_field == NULL) {
 		return NULL;

@@ -1,8 +1,6 @@
 #
 # Makefile for sbr subdirectory
 #
-# $Id$
-#
 
 SHELL = /bin/sh
 
@@ -19,7 +17,6 @@ etcdir      = @sysconfdir@
 CC       = @CC@
 CFLAGS   = @CFLAGS@
 DEFS     = @DEFS@
-HESIOD_INCLUDES = @HESIOD_INCLUDES@  # for mts
 CONFIGDEFS = -DNMHETCDIR='"$(etcdir)"' -DMAILSPOOL='"$(mailspool)"' -DSENDMAILPATH='"$(sendmailpath)"'
 INCLUDES = -I.. -I. -I$(top_srcdir) @CPPFLAGS@
 
@@ -39,7 +36,7 @@ mailspool    = @mailspool@
 sendmailpath = @sendmailpath@
 
 COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CFLAGS)
-COMPILE2 = $(CC) -c $(DEFS) $(CONFIGDEFS) $(INCLUDES) $(HESIOD_INCLUDES) $(CFLAGS)
+COMPILE2 = $(CC) -c $(DEFS) $(CONFIGDEFS) $(INCLUDES) $(CFLAGS)
 
 
 
@@ -121,7 +118,7 @@ libmh.a: $(OBJS)
 	if test x$(LIBTOOL) != x -a x$(GNU_LIBTOOL) = x ; then \
 	  $(LIBTOOL) -static -c -o libmh.a $(OBJS) ; \
 	else \
-	  ar cr libmh.a `$(LORDER) $(OBJS) | $(TSORT)`  ; \
+	  ar cr libmh.a `$(LORDER) $(OBJS) | $(TSORT) 2>/dev/null`  ; \
 	  $(RANLIB) libmh.a  ; \
 	fi
 

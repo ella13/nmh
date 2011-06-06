@@ -1,8 +1,6 @@
 
 /*
  * mts.h -- definitions for the mail system
- *
- * $Id$
  */
 
 /*
@@ -61,20 +59,6 @@ extern char *sendmail;
 extern char *clientname;
 extern char *servers;
 extern char *pophost;
-
-/*
- * BBoards-specific variables
- */
-extern char *bb_domain;
-
-/*
- * POP BBoards-specific variables
- */
-#ifdef BPOP
-extern char *popbbhost;
-extern char *popbbuser;
-extern char *popbblist;
-#endif /* BPOP */
 
 /*
  * Global MailDelivery File

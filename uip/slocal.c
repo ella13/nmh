@@ -2,8 +2,6 @@
 /*
  * slocal.c -- asynchronously filter and deliver new mail
  *
- * $Id$
- *
  * This code is Copyright (c) 2002, by the authors of nmh.  See the
  * COPYRIGHT file in the root directory of the nmh distribution for
  * complete copyright information.
@@ -1067,7 +1065,11 @@ usr_file (int fd, char *mailbox, int mbx_style)
     }
 
     /* close and unlock file */
-    mbx_close (mailbox, md);
+    if (mbx_close (mailbox, md) == NOTOK) {
+        if (verbose)
+	    adorn ("", "error closing:");
+        return -1;
+    }
 
     if (verbose)
 	verbose_printf (", success.\n");

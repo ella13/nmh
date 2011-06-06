@@ -1,6 +1,5 @@
 .\"
 .\" %nmhwarning%
-.\" $Id$
 .\"
 .TH MH-CHART %manext1% "%nmhdate%" MH.6.8 [%nmhversion%]
 .SH NAME
@@ -251,8 +250,6 @@ is equivalent to
 .RB [ \-pack
 .IR file ]
 .RB [ \-nopack ]
-.RB [ \-apop " | " \-noapop ]
-.RB [ \-kpop ]
 .RB [ \-sasl ]
 .RB [ \-saslmech
 .IR mechanism ]
@@ -442,8 +439,6 @@ all/mail/nomail ]
 .IR hostname ]
 .RB [ \-user
 .IR username ]
-.RB [ \-apop " | " \-noapop ]
-.RB [ \-kpop ]
 .RB [ \-sasl ]
 .RB [ \-saslmech
 .IR mechanism ]

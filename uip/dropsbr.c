@@ -2,8 +2,6 @@
 /*
  * dropsbr.c -- create/read/manipulate mail drops
  *
- * $Id$
- *
  * This code is Copyright (c) 2002, by the authors of nmh.  See the
  * COPYRIGHT file in the root directory of the nmh distribution for
  * complete copyright information.
@@ -469,8 +467,9 @@ mbx_size (int md, off_t start, off_t stop)
 int
 mbx_close (char *mailbox, int md)
 {
-    lkclose (md, mailbox);
-    return OK;
+    if (lkclose (md, mailbox) == 0)
+        return OK;
+    return NOTOK;
 }
 
 

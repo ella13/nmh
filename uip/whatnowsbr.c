@@ -2,8 +2,6 @@
 /*
  * whatnowsbr.c -- the WhatNow shell
  *
- * $Id$
- *
  * This code is Copyright (c) 2002, by the authors of nmh.  See the
  * COPYRIGHT file in the root directory of the nmh distribution for
  * complete copyright information.
@@ -408,6 +406,11 @@ WhatNow (int argc, char **argv)
 
 	    if (attach == (char *)0) {
 		advise((char *)0, "can't attach because no header field name was given.");
+		break;
+	    }
+
+	    if (*(argp+1) == (char *)0) {
+		advise((char *)0, "attach command requires file argument(s).");
 		break;
 	    }
 
